@@ -1,0 +1,21 @@
+<RCC>
+    <qresource prefix="/icon">
+        <file>img/block.png</file>
+        <file>img/finshBox.png</file>
+        <file>img/left.png</file>
+        <file>img/normalBox.png</file>
+        <file>img/right.png</file>
+        <file>img/target.png</file>
+        <file>img/wall.png</file>
+        <file>img/down.png</file>
+        <file>img/up.png</file>
+        <file>img/startBtn.png</file>
+        <file>img/bg.jpg</file>
+        <file>img/level.png</file>
+        <file>img/menu.png</file>
+    </qresource>
+    <qresource prefix="/map">
+        <file>GameMap/1.txt</file>
+        <file>GameMap/2.txt</file>
+    </qresource>
+</RCC>
