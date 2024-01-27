@@ -143,7 +143,7 @@ void Game::loadGame(QString path)
     painter = new QPainter(this);
 
     gameMap->loadMap(path);
-    gameRole->changePos(QPoint(1, 1)); // 人物位置
+    gameRole->changePos(gameMap->getOriRolePos()); // 人物位置
 
     finshCnt = gameMap->getOriFinshBoxCnt();
 

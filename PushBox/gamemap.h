@@ -43,8 +43,11 @@ public:
     int getBoxCnt(); // 箱子个数
     int getOriFinshBoxCnt(); // 地图初始时已经进点的箱子
 
+    QPoint getOriRolePos(); // 角色初始位置
+
 private:
     int row, col, boxCnt, oriFinshBoxCnt;
+    QPoint oriRolePos;
     QVector<QVector<int>> gameMap;
     QImage *imgBlock, *imgWall, *imgNormalBox, *imgFinshBox, *imgTarget;
 

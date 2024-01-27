@@ -48,7 +48,7 @@ void LevelSelect::init()
         btnList.push_back(tmp);
         if (i > passLevel)
             tmp->setEnabled(false);
-        path.push_back(":/map/GameMap/" + QString::number(i + 1) + ".txt");
+        path.push_back("./GameMap/" + QString::number(i + 1) + ".txt");
         layout->addWidget(tmp, i / 3, i % 3);
     }
     this->setLayout(layout);

@@ -52,7 +52,7 @@ void Widget::init()
     connect(mainMenu, &MainMenu::turnToLevelSelect, this, &Widget::turnToLevelSelectPage);
 
 
-    QFile levelData("../PushBox/GameMap/data.txt");
+    QFile levelData("./GameMap/data.txt");
     if (!levelData.open(QIODeviceBase::ReadOnly))
     {
         QMessageBox::critical(this, "错误", "文件打开失败：" + levelData.errorString());
@@ -117,7 +117,7 @@ void Widget::saveGameData()
     if (data.isNull())
         return;
 
-    QFile file("../PushBox/GameMap/data.txt");
+    QFile file("./GameMap/data.txt");
     if (!file.open(QIODeviceBase::WriteOnly | QIODeviceBase::Truncate | QIODeviceBase::Text))
     {
         QMessageBox::critical(this, "文件错误", file.errorString());

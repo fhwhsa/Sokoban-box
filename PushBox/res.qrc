@@ -14,8 +14,4 @@
         <file>img/level.png</file>
         <file>img/menu.png</file>
     </qresource>
-    <qresource prefix="/map">
-        <file>GameMap/1.txt</file>
-        <file>GameMap/2.txt</file>
-    </qresource>
 </RCC>

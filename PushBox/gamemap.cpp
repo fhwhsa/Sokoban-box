@@ -45,9 +45,16 @@ void GameMap::loadMap(QString path)
     QByteArray data = mapData.readAll();
     QList<QByteArray> dataList = data.split('\n');
 
+    // 角色初始位置
+    using namespace std;
+    {
+        string str = dataList[0].toStdString();
+        oriRolePos.setX(stoi(str.substr(9)));
+        oriRolePos.setY(stoi(str.substr(str.find(',') + 1)));
+    }
+
     boxCnt = oriFinshBoxCnt = 0;
-    // 最后一行为空，导入资源bug？
-    for (int i = 0; i < dataList.size() - 1; i++) {
+    for (int i = 1; i < dataList.size() - 1; i++) {
         QVector<int> t;
         for (const QByteArray& it : dataList[i].split(','))
         {
@@ -76,6 +83,11 @@ int GameMap::getBoxCnt()
 int GameMap::getOriFinshBoxCnt()
 {
     return oriFinshBoxCnt;
+}
+
+QPoint GameMap::getOriRolePos()
+{
+    return oriRolePos;
 }
 
 void GameMap::paintMap(QPainter *p, QPoint start)
