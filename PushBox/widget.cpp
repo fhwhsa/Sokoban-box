@@ -50,7 +50,8 @@ void Widget::init()
     mainMenu = new MainMenu;
     pushToStack(mainMenu);
     connect(mainMenu, &MainMenu::turnToLevelSelect, this, &Widget::turnToLevelSelectPage);
-
+    btnLevel->setEnabled(false);
+    btnMenu->setEnabled(false);
 
     QFile levelData("./GameMap/data.txt");
     if (!levelData.open(QIODeviceBase::ReadOnly))
@@ -93,6 +94,15 @@ void Widget::pushToStack(QWidget *w)
 void Widget::back()
 {
     int cnt = stackedWidget->count();
+
+    if (cnt == 3)
+        btnLevel->setEnabled(false);
+    else if (cnt == 2)
+    {
+        btnLevel->setEnabled(false);
+        btnMenu->setEnabled(false);
+    }
+
     QWidget *w = stackedWidget->currentWidget();
     stackedWidget->setCurrentIndex(cnt - 2);
     delete w;
@@ -103,6 +113,7 @@ void Widget::turnToLevelSelectPage()
     levelSelect = new LevelSelect(passLevel, levelCnt);
     pushToStack(levelSelect);
     connect(levelSelect, &LevelSelect::startGame, this, &Widget::turnToGame);
+    btnMenu->setEnabled(true);
 }
 
 void Widget::turnToGame(QString mapPath, int cl)
@@ -110,6 +121,7 @@ void Widget::turnToGame(QString mapPath, int cl)
     game = new Game(mapPath, cl);
     pushToStack(game);
     connect(game, &Game::gamePass, this, &Widget::do_gamePassUpdate);
+    btnLevel->setEnabled(true);
 }
 
 void Widget::saveGameData()
@@ -125,7 +137,7 @@ void Widget::saveGameData()
     }
 
     // 动态数字
-    QString str = "LevelCnt={2}\npassLevel={" + QString::number(passLevel) + "}";
+    QString str = "LevelCnt={" + QString::number(levelCnt) + "}\npassLevel={" + QString::number(passLevel) + "}";
     file.write(str.toUtf8());
 
     file.close();
